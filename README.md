@@ -8,6 +8,7 @@
  
  Agustin Marasso Sheridan
  Agustin Montenegro
+ Juan Fernando Quiroz
 
  **Descripcion del proyecto:**
 
