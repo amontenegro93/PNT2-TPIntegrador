@@ -3,14 +3,18 @@ var router = express.Router();
 
 /* GET Lista paseadores. */
 router.get('/', function(req, res, next) {
-  let paseadores = [{id:1234},{id:5678}]
+  let paseadores = [
+    {id:"1234"},
+    {id:"5678"}
+  ]
   res.json(paseadores)
-  res.send(paseadores);
 });
 
 router.get('/:id', function(req, res, next){
-  let paseadores = [{id:1234},{id:5678}]
-
+  let paseadores = [
+    {id:"1234"}
+  ]
+  res.json(paseadores)
 })
 
 router.post('/', function(req, res, next){
