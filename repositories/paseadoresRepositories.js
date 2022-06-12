@@ -9,10 +9,10 @@ const paseadoresRepositories = [
 const repositorioPaseadores = {
     validarMaximoPerros: (paseador) =>{
     //true= se puede agregar
-    return paseador.perros.length()<paseador.cantidadMaxPerros
+    return paseador.perros.length<paseador.cantidadMaxPerros
         },
     agregarPerro: (paseador,perro) =>{
-        if(validarMaximoPerros(paseador)){
+        if(repositorioPaseadores.validarMaximoPerros(paseador)){
             paseador.perros.push(perro)
         }else{
             throw cantPerrosMaxException
@@ -24,5 +24,6 @@ const repositorioPaseadores = {
 }
 
 module.exports = {
-    paseadoresRepositories
+    paseadoresRepositories,
+    repositorioPaseadores
 }

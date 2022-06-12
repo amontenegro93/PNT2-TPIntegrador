@@ -54,33 +54,33 @@ describe('paseadores', ()=>{
     })})
 
     describe('POST/ paseadores', () =>{
-    //   describe('POST/ creear paseador', () =>{
-    //     it("crea  un paseador", ()=>{
-    //       chai.request(app)
-    //       .post('/paseadores')
-    //       .send({ id: "2222",
-    //               dni:"12322222",
-    //               nombreApellido:"Carlos Alvarez",
-    //               telefono:"44449999",
-    //               cantidadMaxPerros:4,
-    //               tarifa:2500,
-    //               perros:["perro22","perro22","perro32","perro42"]
-    //             })
-    //       .end((_,res)=>{
-    //         expect(res).to.have.status(201)
-    //         expect(res).to.be.json
-    //         expect(JSON.parse(res.text))
-    //           .to.eql({ id: "2222",
-    //             dni:"12322222",
-    //             nombreApellido:"Carlos Alvarez",
-    //             telefono:"44449999",
-    //             cantidadMaxPerros:4,
-    //             tarifa:2500,
-    //             perros:["perro22","perro22","perro32","perro42"]
-    //       })
-    //       })
-    //   })
-    // })
+      describe('POST/ creear paseador', () =>{
+        it("crea  un paseador", ()=>{
+          chai.request(app)
+          .post('/paseadores')
+          .send({ id: "2222",
+                  dni:"12322222",
+                  nombreApellido:"Carlos Alvarez",
+                  telefono:"44449999",
+                  cantidadMaxPerros:4,
+                  tarifa:2500,
+                  perros:["perro22","perro23","perro32","perro42"]
+                })
+          .end((_,res)=>{
+            expect(res).to.have.status(201)
+            expect(res).to.be.json
+            expect(JSON.parse(res.text))
+              .to.eql({ id: "2222",
+                dni:"12322222",
+                nombreApellido:"Carlos Alvarez",
+                telefono:"44449999",
+                cantidadMaxPerros:4,
+                tarifa:2500,
+                perros:["perro22","perro23","perro32","perro42"]
+          })
+          })
+      })
+    })
         describe('POST/ agregar perro', () =>{
         it("agrega un perro", ()=>{
           chai.request(app)
@@ -102,22 +102,4 @@ describe('paseadores', ()=>{
           })
       })
     })
-    })
-
-    describe('DELETE/paseadores', () =>{
-        it('borra un paseador', ()=>{
-            
-        })
-      })
-
-    describe('PATCH/paseadores', () =>{
-      it('edita un paseador', ()=>{
-          
-      })
-    })
-
-    describe('PUT/paseadores', () =>{
-      it('edita un paseador', ()=>{
-          
-      })
     })

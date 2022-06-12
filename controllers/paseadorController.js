@@ -1,6 +1,8 @@
-const paseador = require('../models/paseador');
+const Paseador = require('../models/paseador');
 const Perro = require('../models/perro')
 const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
+const { repositorioPaseadores } = require('../repositories/paseadoresRepositories');
+
 
 const listaPaseadores = function(req,res,next){
     let paseadores = paseadoresRepositories;
@@ -26,9 +28,9 @@ module.exports = {
     },
 
     createPaseadorController: (req,res) => {
-    const {id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa} = req.body
+    const {id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros} = req.body
 
-    const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa)
+    const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros)
     
     try {
         //paseadoresRepositories
@@ -47,17 +49,23 @@ module.exports = {
     agregarPerroController:(req,res)=>{
         const {id,nombre,telefono,direccion} =req.body
         const perro = new Perro(id,nombre,telefono,direccion)
-        const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa)
+        const nuevoPaseador = new Paseador("2222",
+        "12322222",
+        "Carlos Alvarez",
+        "44449999",
+        4,
+        2500,
+        ["perro22","perro22","perro32"])
         
         try {
-            repositorioPaseadores.agregarPerro(pasedor,perro)
+            repositorioPaseadores.agregarPerro(nuevoPaseador,perro)
 
             res.status(201)
-            res.json(paseador)
+            res.json(perro)
         }catch(e){
             console.error(e)
             res.status(409)
-            res.json(paseador)
+            res.json(nuevoPaseador)
         }   
     }
 }

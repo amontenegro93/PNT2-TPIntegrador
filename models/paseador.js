@@ -1,5 +1,3 @@
-//import perro from "./perro";
-
 module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros){
     this.id = id;
     this.dni = dni;
