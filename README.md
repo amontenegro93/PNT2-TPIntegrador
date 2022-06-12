@@ -29,7 +29,7 @@ Se podra calificar al paseador y dejar comentarios.
 
 Los usuarios deberan residir en argentina
 Los paseadores podran publicar hasta 1 rutinas diarias, maximo de dos horas cada una.
-Los paseadores podran especificar la cantidad de perros a pasear, maximo 10 perros simultaneamente.
+Los paseadores podran especificar la cantidad de perros a pasear, maximo 5 perros simultaneamente.
 Los paseadores deberan realizar una descripcion del paseo explicando el tipo de perros a pasear, la ruta, el horario y la tarifa.
 El dueño del perro podra registrar hasta 10 perros, especificando su raza, peso, genero y edad.
 

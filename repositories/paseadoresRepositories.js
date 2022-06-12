@@ -5,7 +5,11 @@ const paseadoresRepositories = [
     new paseador("1235","12345679","juana gomez","44443333"),
 ]
 
-
+const repositorioPaseadores = {
+    agregar: (paseador) => {
+        paseadoresRepositories.push(paseador)
+    }
+}
 
 module.exports = {
     paseadoresRepositories
