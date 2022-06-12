@@ -2,13 +2,13 @@ import perro from "./perro";
 const rutina = require("./rutina");
 
 
-module.exports = function(id,dni,nombreApellido,rutina,telefono){
+module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa){
     this.id = id;
     this.dni = dni;
     this.nombreApellido = nombreApellido;
-    this.rutina = rutina;
-    this.perros = [];
     this.telefono = telefono;
-    
+    this.cantidadMaxPerros = cantidadMaxPerros;
+    this.tarifa = tarifa;
+    this.perros = [];
 }
 

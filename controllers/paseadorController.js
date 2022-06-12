@@ -41,5 +41,8 @@ module.exports = {
     }    
     },
 
-    agregarRutinaPaseadorController:()
+    agregarPerro:(req,res)=>{
+        const {perro} =req.body
+        
+    }
 }

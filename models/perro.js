@@ -1,9 +1,6 @@
-module.exports = function(id,nombre,duenio,raza,genero,peso,edad){
+module.exports = function(id,nombre,telefono,direccion){
     this.id = id;
     this.nombre = nombre;
-    this.duenio = duenio;
-    this.raza = raza;
-    this.genero = genero;
-    this.peso = peso;
-    this.edad = edad;
+    this.telefono = telefono;
+    this.direccion = direccion;
 }
