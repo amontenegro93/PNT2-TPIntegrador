@@ -1,37 +1,20 @@
 var express = require('express');
+const {getPaseadoresController, getPaseadorController,createPaseadorController,agregarPerroController} = require('../controllers/paseadorController');
 var router = express.Router();
 
-/* GET Lista paseadores. */
-router.get('/', function(req, res, next) {
-  let paseadores = [
-    {id:"1234"},
-    {id:"5678"}
-  ]
-  res.json(paseadores)
-});
+router.get('/:id', getPaseadorController
+)
 
-router.get('/:id', function(req, res, next){
-  let paseadores = [
-    {id:"1234"}
-  ]
-  res.json(paseadores)
-})
+router.get('/', getPaseadoresController
+)
 
-router.post('/', function(req, res, next){
+router.post('/', createPaseadorController
   
-})
+)
 
-router.delete('/', function(req, res, next){
+router.post('/agregarPerro', agregarPerroController
   
-})
-
-router.put('/', function(req, res, next){
-  
-})
-
-router.patch('/', function(req, res, next){
-  
-})
+)
 
 
 module.exports = router;

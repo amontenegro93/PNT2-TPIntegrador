@@ -1,4 +1,5 @@
 const paseador = require('../models/paseador');
+const Perro = require('../models/perro')
 const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
 
 const listaPaseadores = function(req,res,next){
@@ -13,7 +14,7 @@ module.exports = {
     //buscador de paseador para que no se repita
     getPaseadorController: function(req, res, next){
         let paseadores = paseadoresRepositories;
-        const paseador = paseadores.find(uno => req.params.id == uno.dni)
+        const paseador = paseadores.find(uno => req.params.id == uno.id)
 
         if (paseador===null || paseador === undefined){
             res.status(404)
@@ -25,11 +26,13 @@ module.exports = {
     },
 
     createPaseadorController: (req,res) => {
-    const {id,dni,nombreApellido,rutina,telefono} = req.body
+    const {id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa} = req.body
 
-    const paseador = new Paseador(id,dni,nombreApellido,rutina,telefono)
+    const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa)
     
     try {
+        //paseadoresRepositories
+        //repositorioPaseadores
         repositorioPaseadores.agregar(paseador)
 
         res.status(201)
@@ -41,8 +44,20 @@ module.exports = {
     }    
     },
 
-    agregarPerro:(req,res)=>{
-        const {perro} =req.body
+    agregarPerroController:(req,res)=>{
+        const {id,nombre,telefono,direccion} =req.body
+        const perro = new Perro(id,nombre,telefono,direccion)
+        const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa)
         
+        try {
+            repositorioPaseadores.agregarPerro(pasedor,perro)
+
+            res.status(201)
+            res.json(paseador)
+        }catch(e){
+            console.error(e)
+            res.status(409)
+            res.json(paseador)
+        }   
     }
 }
