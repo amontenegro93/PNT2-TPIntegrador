@@ -7,16 +7,8 @@ const paseadoresRepositories = [
 ]
 
 const repositorioPaseadores = {
-    validarMaximoPerros: (paseador) =>{
-    //true= se puede agregar
-    return paseador.perros.length<paseador.cantidadMaxPerros
-        },
     agregarPerro: (paseador,perro) =>{
-        if(repositorioPaseadores.validarMaximoPerros(paseador)){
             paseador.perros.push(perro)
-        }else{
-            throw cantPerrosMaxException
-        }
     },
     agregar: (paseador) => {
         paseadoresRepositories.push(paseador)

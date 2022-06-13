@@ -80,15 +80,62 @@ describe('paseadores', ()=>{
           })
           })
       })
+      it("crea  un paseador y lo muestra en la base", ()=>{
+        chai.request(app)
+              .post('/paseadores')
+              .send({ id: "3333",
+              dni:"12323333",
+              nombreApellido:"Pedro Picapiedra",
+              telefono:"44440000",
+              cantidadMaxPerros:1,
+              tarifa:5000,
+              perros:["perro22"]
+        })
+        .end((_,res)=>{
+          expect(res).to.have.status(201)
+          expect(res).to.be.json
+          expect(JSON.parse(res.text))
+            .to.eql({ id: "3333",
+              dni:"12323333",
+              nombreApellido:"Pedro Picapiedra",
+              telefono:"44440000",
+              cantidadMaxPerros:1,
+              tarifa:5000,
+              perros:["perro22"]
+        })
+        })
+
+        chai.request(app)
+        .get('/paseadores')
+        .end((_, res) =>{
+          expect(res).to.have.status(200)
+          expect(res).to.be.json
+          expect(JSON.parse(res.text))
+          .to.eql([
+            {id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"]},
+            {id: "1235",dni:"12345679",nombreApellido:"juana gomez",telefono:"44443333",cantidadMaxPerros:3,tarifa:2000,perros:["perro5","perro6","perro7"]},
+            {id: "2222",dni:"12322222",nombreApellido:"Carlos Alvarez",telefono:"44449999",cantidadMaxPerros:4,tarifa:2500,perros:["perro22","perro23","perro32","perro42"]},
+            { id: "3333",
+              dni:"12323333",
+              nombreApellido:"Pedro Picapiedra",
+              telefono:"44440000",
+              cantidadMaxPerros:1,
+              tarifa:5000,
+              perros:["perro22"]
+        }
+          ])
+        })
+    })
     })
         describe('POST/ agregar perro', () =>{
         it("agrega un perro", ()=>{
           chai.request(app)
           .post('/paseadores/agregarPerro')
-          .send({ id: "2222",
+          .send({ idPerro: "2222",
                   nombre:"perrito",
                   telefono:"44449999",
                   direccion:"avenida 1",
+                  idPaseador:"1234"
                 })
           .end((_,res)=>{
             expect(res).to.have.status(201)
@@ -101,5 +148,21 @@ describe('paseadores', ()=>{
             })
           })
       })
+      it("no agrega un perro porque el paseador esta lleno", ()=>{
+        chai.request(app)
+        .post('/paseadores/agregarPerro')
+        .send({ idPerro: "2222",
+                nombre:"perrito",
+                telefono:"44449999",
+                direccion:"avenida 1",
+                idPaseador:"1235"
+              })
+        .end((_,res)=>{
+          expect(res).to.have.status(409)
+          expect(res).to.be.json
+          expect(JSON.parse(res.text))
+          .to.eql({ message: "paseador lleno" })
+          })
+        })
     })
     })

@@ -2,12 +2,23 @@ const Paseador = require('../models/paseador');
 const Perro = require('../models/perro')
 const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
 const { repositorioPaseadores } = require('../repositories/paseadoresRepositories');
-
+const Validador = require('../services/validador');
 
 const listaPaseadores = function(req,res,next){
     let paseadores = paseadoresRepositories;
 
     res.json(paseadores);
+}
+
+const getPaseadorInterno = function(idBuscado){
+    let paseadores = paseadoresRepositories;
+    const paseador = paseadores.find(uno => idBuscado == uno.id)
+
+    if (paseador===null || paseador === undefined){
+        return "paseador no encontrado"
+    } else {
+        return paseador
+    }
 }
 
 module.exports = {
@@ -33,8 +44,6 @@ module.exports = {
     const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros)
     
     try {
-        //paseadoresRepositories
-        //repositorioPaseadores
         repositorioPaseadores.agregar(paseador)
 
         res.status(201)
@@ -47,25 +56,19 @@ module.exports = {
     },
 
     agregarPerroController:(req,res)=>{
-        const {id,nombre,telefono,direccion} =req.body
-        const perro = new Perro(id,nombre,telefono,direccion)
-        const nuevoPaseador = new Paseador("2222",
-        "12322222",
-        "Carlos Alvarez",
-        "44449999",
-        4,
-        2500,
-        ["perro22","perro22","perro32"])
+        const {idPerro,nombre,telefono,direccion,idPaseador} =req.body
+        const perro = new Perro(idPerro,nombre,telefono,direccion)
+        const paseadorBuscado = getPaseadorInterno(idPaseador)
         
         try {
-            repositorioPaseadores.agregarPerro(nuevoPaseador,perro)
-
+            Validador.validarMaximoPerros(paseadorBuscado)
+            repositorioPaseadores.agregarPerro(paseadorBuscado,perro)
             res.status(201)
             res.json(perro)
         }catch(e){
-            console.error(e)
+            console.error("paseador lleno")
             res.status(409)
-            res.json(nuevoPaseador)
+            res.json({message:"paseador lleno"})
         }   
     }
 }
