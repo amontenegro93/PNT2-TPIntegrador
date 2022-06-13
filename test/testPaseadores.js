@@ -6,6 +6,8 @@ const { describe } = require('mocha')
 const app = require('../app')
 // import app from '../app'
 const { expect } = chai
+const spies = require('chai-spies')
+chai.use(spies)
 
 chai.use(chaiHttp)
 

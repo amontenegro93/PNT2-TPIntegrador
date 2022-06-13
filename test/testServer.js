@@ -1,3 +1,4 @@
+const chai = require('chai')
 const { expect } = require ('chai');
 const { it } = require('mocha');
 const app = require('../app');

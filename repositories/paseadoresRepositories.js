@@ -13,6 +13,7 @@ const repositorioPaseadores = {
     agregar: (paseador) => {
         paseadoresRepositories.push(paseador)
     }
+    
 }
 
 module.exports = {
