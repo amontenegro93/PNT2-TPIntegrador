@@ -24,11 +24,14 @@ const repositorioPaseadores = {
     terminarRutina: (paseador) =>{
         paseador.terminarPaseo()
     },
+    getPaseadores:()=>{
+        return paseadoresRepositories
+    }
 
 
 }
 
 module.exports = {
-    paseadoresRepositories,
+    //paseadoresRepositories,
     repositorioPaseadores
 }

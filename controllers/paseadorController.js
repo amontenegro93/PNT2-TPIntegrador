@@ -1,18 +1,18 @@
 const Paseador = require('../models/paseador');
 const Perro = require('../models/perro');
 const Rutina = require('../models/rutina');
-const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
+//const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
 const { repositorioPaseadores } = require('../repositories/paseadoresRepositories');
 const Validador = require('../services/validador');
 
 const listaPaseadores = function(req,res,next){
-    let paseadores = paseadoresRepositories;
+    let paseadores = repositorioPaseadores.getPaseadores()
 
     res.json(paseadores);
 }
 
 const getPaseadorInterno = function(idBuscado){
-    let paseadores = paseadoresRepositories;
+    let paseadores = repositorioPaseadores.getPaseadores()
     const paseador = paseadores.find(uno => idBuscado == uno.id)
 
     if (paseador===null || paseador === undefined){
@@ -27,7 +27,7 @@ module.exports = {
     
     //buscador de paseador para que no se repita
     getPaseadorController: function(req, res, next){
-        let paseadores = paseadoresRepositories;
+        let paseadores = repositorioPaseadores.getPaseadores()
         const paseador = paseadores.find(uno => req.params.id == uno.id)
 
         if (paseador===null || paseador === undefined){
