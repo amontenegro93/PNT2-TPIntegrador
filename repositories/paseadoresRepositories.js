@@ -22,7 +22,7 @@ const repositorioPaseadores = {
         paseador.pasear()
     },
     terminarRutina: (paseador) =>{
-        paseador.terminarPasear()
+        paseador.terminarPaseo()
     },
 
 

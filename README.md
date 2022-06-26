@@ -20,9 +20,11 @@
 El dueño puede visualizar una lista de paseadores.
 El paseador podra publicar sus datos.
 El recorrido sera monitoreado en un mapa en tiempo real. se enviaran alertas de inicio y de finalizacion del recorrido.
+El paseador da inicio y fin al paseo y notifican los cambios.
 
  **Reglas de negocio:**
 
-Los paseadores podran publicar 1 rutina.
+Los paseadores podran publicar 1 rutina a la vez.
 Los paseadores podran especificar la cantidad de perros a pasear, maximo 5 perros simultaneamente.
 Los paseadores deberan realizar una descripcion del paseo explicando la ruta y la tarifa.
+Los paseadores no pueden iniciar un nuevo recoorido si ya tienen uno en curso.

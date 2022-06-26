@@ -1,6 +1,6 @@
 const Paseador = require('../models/paseador');
 const Perro = require('../models/perro');
-const rutina = require('../models/rutina');
+const Rutina = require('../models/rutina');
 const { paseadoresRepositories } = require('../repositories/paseadoresRepositories');
 const { repositorioPaseadores } = require('../repositories/paseadoresRepositories');
 const Validador = require('../services/validador');
@@ -40,9 +40,9 @@ module.exports = {
     },
 
     createPaseadorController: (req,res) => {
-    const {id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros} = req.body
+    const {id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros,enPaseo,rutinaActiva} = req.body
 
-    const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros)
+    const paseador = new Paseador(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros,enPaseo,rutinaActiva)
     
     try {
         repositorioPaseadores.agregar(paseador)
@@ -73,15 +73,15 @@ module.exports = {
         }   
     },
     empezarRutinaController:(req,res)=>{
-        const {idRutina,perros, idPaseador} =req.body
+        const {id,perros, idPaseador} =req.body
         const paseadorBuscado = getPaseadorInterno(idPaseador)
         
         try {
             Validador.validarEstaEnPaseo(paseadorBuscado)
             Validador.validarRutinaActiva(paseadorBuscado)
-            const rutina = new rutina(idRutina,perros)
+            const rutina = new Rutina(id,perros)
             repositorioPaseadores.agregarRutina(paseadorBuscado,rutina)
-            repositorioPaseadores.empezarRutina()
+            repositorioPaseadores.empezarRutina(paseadorBuscado)
             res.status(201)
             res.json(rutina)
         }catch(e){
@@ -95,12 +95,12 @@ module.exports = {
         const paseadorBuscado = getPaseadorInterno(idPaseador)
         
         try {
-            Validador.validarEstaEnPaseo(paseadorBuscado)
-            Validador.validarRutinaActivaEnNull(paseadorBuscado)
-            repositorioPaseadores.quitarRutina(paseadorBuscado,rutina)
-            repositorioPaseadores.terminarRutina()
+            //Validador.validarEstaEnPaseo(paseadorBuscado)
+            //Validador.validarRutinaActivaEnNull(paseadorBuscado)
+            repositorioPaseadores.quitaRutina(paseadorBuscado)
+            repositorioPaseadores.terminarRutina(paseadorBuscado)
             res.status(201)
-            res.json(rutina)
+            res.json(paseadorBuscado)
         }catch(e){
             console.error("paseador con otra rutina")
             res.status(409)

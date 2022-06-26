@@ -66,7 +66,9 @@ describe('paseadores', ()=>{
                   telefono:"44449999",
                   cantidadMaxPerros:4,
                   tarifa:2500,
-                  perros:["perro22","perro23","perro32","perro42"],enPaseo:false,rutinaActiva:null
+                  perros:["perro22","perro23","perro32","perro42"],
+                  enPaseo:false,
+                  rutinaActiva:null
                 })
           .end((_,res)=>{
             expect(res).to.have.status(201)
@@ -78,7 +80,9 @@ describe('paseadores', ()=>{
                 telefono:"44449999",
                 cantidadMaxPerros:4,
                 tarifa:2500,
-                perros:["perro22","perro23","perro32","perro42"],enPaseo:false,rutinaActiva:null
+                perros:["perro22","perro23","perro32","perro42"],
+                enPaseo:false,
+                rutinaActiva:null
           })
           })
       })
@@ -167,4 +171,47 @@ describe('paseadores', ()=>{
           })
         })
     })
+    describe('POST/ empieza la rutina', () =>{
+      it("empieza la rutina", ()=>{
+        chai.request(app)
+        .post('/paseadores/empezarRutina')
+        .send({ id: "111",
+                perros:["2222","3333", "4444"],
+                idPaseador: "1234"
+              })
+        .end((_,res)=>{
+          expect(res).to.have.status(201)
+          expect(res).to.be.json
+          expect(JSON.parse(res.text))
+            .to.eql({ id: "111",
+            perros:["2222","3333", "4444"],
+
+          })
+        })
+    })
+    
+    })
+
+    describe('POST/ terminar la rutina', () =>{
+      it("terminar la rutina", ()=>{
+        chai.request(app)
+        .post('/paseadores/terminarRutina')
+        .send({ idPaseador: "1234"
+              })
+        .end((_,res)=>{
+          expect(res).to.have.status(201)
+          expect(res).to.be.json
+          expect(JSON.parse(res.text))
+            .to.eql({id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4", {
+                    "direccion": "avenida 1",
+                    "id": "2222",
+                    "nombre": "perrito",
+                    "telefono": "44449999"
+                  }],enPaseo:false,rutinaActiva:null})
+        })
+    })
+    
+    })
+
+
     })

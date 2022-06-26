@@ -1,4 +1,4 @@
-module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros){
+module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarifa,perros,enPaseo,rutinaActiva){
     this.id = id;
     this.dni = dni;
     this.nombreApellido = nombreApellido;
@@ -6,8 +6,8 @@ module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarif
     this.cantidadMaxPerros = cantidadMaxPerros;
     this.tarifa = tarifa;
     this.perros = perros;
-    this.enPaseo = false;
-    this.rutinaActiva = null;
+    this.enPaseo = enPaseo;
+    this.rutinaActiva = rutinaActiva;
     this.pasear = function(){
         this.enPaseo = true
         console.log(`${this.nombreApellido} empezo a pasear a los perros`)
