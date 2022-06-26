@@ -21,8 +21,8 @@ describe('paseadores', ()=>{
         expect(res).to.be.json
         expect(JSON.parse(res.text))
         .to.eql([
-          {id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"]},
-          {id: "1235",dni:"12345679",nombreApellido:"juana gomez",telefono:"44443333",cantidadMaxPerros:3,tarifa:2000,perros:["perro5","perro6","perro7"]}
+          {id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"],enPaseo:false,rutinaActiva:null},
+          {id: "1235",dni:"12345679",nombreApellido:"juana gomez",telefono:"44443333",cantidadMaxPerros:3,tarifa:2000,perros:["perro5","perro6","perro7"],enPaseo:false,rutinaActiva:null}
         ])
       })
     })
@@ -37,7 +37,7 @@ describe('paseadores', ()=>{
           expect(res).to.have.status(200)
           expect(res).to.be.json
           expect(JSON.parse(res.text))
-            .to.eql({ id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"] })          
+            .to.eql({ id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"],enPaseo:false,rutinaActiva:null })          
         })
       })
         
@@ -66,7 +66,7 @@ describe('paseadores', ()=>{
                   telefono:"44449999",
                   cantidadMaxPerros:4,
                   tarifa:2500,
-                  perros:["perro22","perro23","perro32","perro42"]
+                  perros:["perro22","perro23","perro32","perro42"],enPaseo:false,rutinaActiva:null
                 })
           .end((_,res)=>{
             expect(res).to.have.status(201)
@@ -78,7 +78,7 @@ describe('paseadores', ()=>{
                 telefono:"44449999",
                 cantidadMaxPerros:4,
                 tarifa:2500,
-                perros:["perro22","perro23","perro32","perro42"]
+                perros:["perro22","perro23","perro32","perro42"],enPaseo:false,rutinaActiva:null
           })
           })
       })
@@ -91,7 +91,7 @@ describe('paseadores', ()=>{
               telefono:"44440000",
               cantidadMaxPerros:1,
               tarifa:5000,
-              perros:["perro22"]
+              perros:["perro22"],enPaseo:false,rutinaActiva:null
         })
         .end((_,res)=>{
           expect(res).to.have.status(201)
@@ -103,7 +103,7 @@ describe('paseadores', ()=>{
               telefono:"44440000",
               cantidadMaxPerros:1,
               tarifa:5000,
-              perros:["perro22"]
+              perros:["perro22"],enPaseo:false,rutinaActiva:null
         })
         })
 
@@ -114,16 +114,16 @@ describe('paseadores', ()=>{
           expect(res).to.be.json
           expect(JSON.parse(res.text))
           .to.eql([
-            {id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"]},
-            {id: "1235",dni:"12345679",nombreApellido:"juana gomez",telefono:"44443333",cantidadMaxPerros:3,tarifa:2000,perros:["perro5","perro6","perro7"]},
-            {id: "2222",dni:"12322222",nombreApellido:"Carlos Alvarez",telefono:"44449999",cantidadMaxPerros:4,tarifa:2500,perros:["perro22","perro23","perro32","perro42"]},
+            {id: "1234",dni:"12345678",nombreApellido:"juan perez",telefono:"44442222",cantidadMaxPerros:5,tarifa:1500,perros:["perro1","perro2","perro3","perro4"],enPaseo:false,rutinaActiva:null},
+            {id: "1235",dni:"12345679",nombreApellido:"juana gomez",telefono:"44443333",cantidadMaxPerros:3,tarifa:2000,perros:["perro5","perro6","perro7"],enPaseo:false,rutinaActiva:null},
+            {id: "2222",dni:"12322222",nombreApellido:"Carlos Alvarez",telefono:"44449999",cantidadMaxPerros:4,tarifa:2500,perros:["perro22","perro23","perro32","perro42"],enPaseo:false,rutinaActiva:null},
             { id: "3333",
               dni:"12323333",
               nombreApellido:"Pedro Picapiedra",
               telefono:"44440000",
               cantidadMaxPerros:1,
               tarifa:5000,
-              perros:["perro22"]
+              perros:["perro22"],enPaseo:false,rutinaActiva:null
         }
           ])
         })
