@@ -6,6 +6,8 @@ module.exports = function(id,dni,nombreApellido,telefono,cantidadMaxPerros,tarif
     this.cantidadMaxPerros = cantidadMaxPerros;
     this.tarifa = tarifa;
     this.perros = perros;
+    this.enPaseo = false;
+    this.rutinaActiva = null;
     this.pasear = function(){
         this.enPaseo = true
         console.log(`${this.nombreApellido} empezo a pasear a los perros`)

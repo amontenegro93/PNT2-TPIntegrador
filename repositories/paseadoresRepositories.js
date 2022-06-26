@@ -1,5 +1,4 @@
 const paseador = require('../models/paseador');
-const cantPerrosMaxException = require('../exceptions/cantPerrosMax');
 
 const paseadoresRepositories = [
     new paseador("1234","12345678","juan perez","44442222",5,1500,["perro1","perro2","perro3","perro4"]),
@@ -13,7 +12,7 @@ const repositorioPaseadores = {
     agregar: (paseador) => {
         paseadoresRepositories.push(paseador)
     }
-    
+
 }
 
 module.exports = {
