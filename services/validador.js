@@ -1,5 +1,6 @@
 const cantPerrosMaxException = require('../exceptions/cantPerrosMax');
 const estaEnPaseoException = require('../exceptions/estaEnPaseo');
+const rutinaActivaException = require('../exceptions/rutinaActiva');
 
 
 const validarMaximoPerros = (paseador) =>{
@@ -16,7 +17,24 @@ const validarEstaEnPaseo = (paseador) =>{
         }
     }
 
+const validarRutinaActiva = (paseador) =>{
+        //true= no se puede agregar
+    if(paseador.rutinaActiva!=null){
+        throw new rutinaActivaException
+        }
+
+    }
+
+const validarRutinaActivaEnNull = (paseador) =>{
+        //true= no se puede agregar
+if(paseador.rutinaActiva=null){
+    throw new rutinaActivaException
+    }
+}
+
 module.exports = {
-    validarMaximoPerros
+    validarMaximoPerros,
+    validarEstaEnPaseo,
+    validarRutinaActiva
 }
 

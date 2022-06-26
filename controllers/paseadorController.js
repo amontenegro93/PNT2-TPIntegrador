@@ -74,18 +74,37 @@ module.exports = {
     },
     empezarRutinaController:(req,res)=>{
         const {idRutina,perros, idPaseador} =req.body
-        const rutina = new rutina(idRutina,perros)
         const paseadorBuscado = getPaseadorInterno(idPaseador)
         
         try {
-            Validador.validarMaximoPerros(paseadorBuscado)
-            repositorioPaseadores.agregarPerro(paseadorBuscado,perro)
+            Validador.validarEstaEnPaseo(paseadorBuscado)
+            Validador.validarRutinaActiva(paseadorBuscado)
+            const rutina = new rutina(idRutina,perros)
+            repositorioPaseadores.agregarRutina(paseadorBuscado,rutina)
+            repositorioPaseadores.empezarRutina()
             res.status(201)
-            res.json(perro)
+            res.json(rutina)
         }catch(e){
-            console.error("paseador lleno")
+            console.error("paseador con otra rutina")
             res.status(409)
-            res.json({message:"paseador lleno"})
+            res.json({message:"paseador con otra rutina"})
+        }   
+    },
+    terminarRutinaController:(req,res)=>{
+        const {idPaseador} =req.body
+        const paseadorBuscado = getPaseadorInterno(idPaseador)
+        
+        try {
+            Validador.validarEstaEnPaseo(paseadorBuscado)
+            Validador.validarRutinaActivaEnNull(paseadorBuscado)
+            repositorioPaseadores.quitarRutina(paseadorBuscado,rutina)
+            repositorioPaseadores.terminarRutina()
+            res.status(201)
+            res.json(rutina)
+        }catch(e){
+            console.error("paseador con otra rutina")
+            res.status(409)
+            res.json({message:"paseador con otra rutina"})
         }   
     }
 }

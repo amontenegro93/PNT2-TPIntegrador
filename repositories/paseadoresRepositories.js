@@ -11,7 +11,20 @@ const repositorioPaseadores = {
     },
     agregar: (paseador) => {
         paseadoresRepositories.push(paseador)
-    }
+    },
+    agregarRutina: (paseador,rutina) =>{
+        paseador.rutinaActiva = rutina
+    },
+    quitaRutina: (paseador) =>{
+        paseador.rutinaActiva = null
+    },
+    empezarRutina: (paseador) =>{
+        paseador.pasear()
+    },
+    terminarRutina: (paseador) =>{
+        paseador.terminarPasear()
+    },
+
 
 }
 
