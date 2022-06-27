@@ -17,6 +17,13 @@ const validarEstaEnPaseo = (paseador) =>{
         }
     }
 
+const validarNoEstaEnPaseo = (paseador) =>{
+    //true= no se puede agregar
+    if(paseador.enPaseo===false){
+        throw new estaEnPaseoException
+        }
+    }
+
 const validarRutinaActiva = (paseador) =>{
         //true= no se puede agregar
     if(paseador.rutinaActiva!=null){
@@ -35,6 +42,7 @@ if(paseador.rutinaActiva===null){
 module.exports = {
     validarMaximoPerros,
     validarEstaEnPaseo,
+    validarNoEstaEnPaseo,
     validarRutinaActiva,
     validarRutinaActivaEnNull
 }

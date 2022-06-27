@@ -95,8 +95,8 @@ module.exports = {
         const paseadorBuscado = getPaseadorInterno(idPaseador)
         
         try {
-            //Validador.validarEstaEnPaseo(paseadorBuscado)
-            //Validador.validarRutinaActivaEnNull(paseadorBuscado)
+            Validador.validarNoEstaEnPaseo(paseadorBuscado)
+            Validador.validarRutinaActivaEnNull(paseadorBuscado)
             repositorioPaseadores.quitaRutina(paseadorBuscado)
             repositorioPaseadores.terminarRutina(paseadorBuscado)
             res.status(201)
